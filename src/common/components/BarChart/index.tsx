@@ -21,12 +21,16 @@ const BarChart = ({ labels, data, height }: BarChartProps) => {
   const maxValue = Math.max(...values);
   const minValue = Math.min(...values);
 
+  console.log("data: ", data);
+  console.log("max: ", maxValue);
+
   const minValueLabel =
     dataLabels[values.findIndex((value) => value === minValue)];
   const maxValueLabel =
     dataLabels[values.findIndex((value) => value === maxValue)];
 
-  const rowHeight = (height - 4 * (values.length - 1)) / values.length;
+  const length = values.length || labels.length;
+  const rowHeight = (height - 4 * (length - 1)) / length;
 
   return (
     <BarChartWrapper height={height}>
@@ -42,6 +46,7 @@ const BarChart = ({ labels, data, height }: BarChartProps) => {
         <MaxLabel>{maxValueLabel}</MaxLabel>
         {values.map((value, index) => {
           const barValue = (value / maxValue) * 100;
+          console.log("bar ", index, barValue);
 
           return (
             <Bar
