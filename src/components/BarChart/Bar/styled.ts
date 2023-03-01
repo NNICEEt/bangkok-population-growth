@@ -1,5 +1,5 @@
-import { LIGHTPINK, PINK, WHITE } from "foundation/color";
-import { font8 } from "foundation/typography/fontSize";
+import { LIGHTPINK, PINK, WHITE } from "common/foundation/color";
+import { font8 } from "common/foundation/typography/fontSize";
 import styled from "styled-components";
 
 interface BarProps {

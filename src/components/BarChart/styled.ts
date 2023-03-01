@@ -1,5 +1,5 @@
-import { WHITE } from "foundation/color";
-import { font8 } from "foundation/typography/fontSize";
+import { WHITE } from "common/foundation/color";
+import { font8 } from "common/foundation/typography";
 import styled, { css } from "styled-components";
 
 const flexPositionCSS = css`
