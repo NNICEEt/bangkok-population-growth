@@ -8,6 +8,8 @@ const GrowthChartSection = () => {
   useFetchBangkokPopulation();
   const { districtPopulationGrowth } = useBangkokPopulationData();
 
+  console.log("growth... component");
+
   return (
     <div>
       <div className="text-18 font-bold">{locales.GROWTH}</div>

@@ -21,8 +21,6 @@ const YearsDropdown = ({
     value: year,
   }));
 
-  console.log(yearList);
-
   return (
     <select
       defaultValue=""

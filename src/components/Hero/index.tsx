@@ -1,6 +1,7 @@
 import * as constants from "./constants";
 
 const Hero = () => {
+  console.log("hero component");
   return (
     <div>
       <div className="text-28 font-bold text-white">{constants.TITLE}</div>

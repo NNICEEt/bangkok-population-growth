@@ -21,9 +21,6 @@ const BarChart = ({ labels, data, height }: BarChartProps) => {
   const maxValue = Math.max(...values);
   const minValue = Math.min(...values);
 
-  console.log("data: ", data);
-  console.log("max: ", maxValue);
-
   const minValueLabel =
     dataLabels[values.findIndex((value) => value === minValue)];
   const maxValueLabel =
@@ -46,7 +43,6 @@ const BarChart = ({ labels, data, height }: BarChartProps) => {
         <MaxLabel>{maxValueLabel}</MaxLabel>
         {values.map((value, index) => {
           const barValue = (value / maxValue) * 100;
-          console.log("bar ", index, barValue);
 
           return (
             <Bar

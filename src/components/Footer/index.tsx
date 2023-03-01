@@ -1,6 +1,7 @@
 import * as constants from "./constants";
 
 const Footer = () => {
+  console.log("footer component");
   return (
     <div>
       <div className="text-18">{constants.TITLE}</div>
