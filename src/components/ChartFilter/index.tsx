@@ -1,25 +1,46 @@
+import React, { useMemo } from "react";
+import useBangkokPopulationStore from "store/useBangkokPopulationStore";
 import YearsDropdown from "components/YearsDropdown";
 import * as locales from "./locales";
-import useBangkokPopulationData from "hooks/useBangkokPopulationData";
-import useBangkokPopulationStore from "store/useBangkokPopulationStore";
 
 const ChartFilter = () => {
-  const { districtList } = useBangkokPopulationData();
-  const { currentStartYear, currentEndYear } = useBangkokPopulationStore(
-    (state) => ({
+  const { bangkokPopulationGrowth, currentStartYear, currentEndYear } =
+    useBangkokPopulationStore((state) => ({
+      bangkokPopulationGrowth: state.bangkokPopulationGrowth,
       currentStartYear: state.currentStartYear,
       currentEndYear: state.currentEndYear,
-    })
-  );
+    }));
 
-  const { setCurrentStartYear, setCurrentEndYear } = useBangkokPopulationStore(
-    (state) => ({
-      setCurrentStartYear: state.setCurrentStartYear,
-      setCurrentEndYear: state.setCurrentEndYear,
-    })
-  );
+  const {
+    setCurrentStartYear,
+    setCurrentEndYear,
+    setCurrentDistrictPopulationGrowth,
+  } = useBangkokPopulationStore((state) => ({
+    setCurrentStartYear: state.setCurrentStartYear,
+    setCurrentEndYear: state.setCurrentEndYear,
+    setCurrentDistrictPopulationGrowth:
+      state.setCurrentDistrictPopulationGrowth,
+  }));
 
-  const { setDistrictPopulationGrowth } = useBangkokPopulationData();
+  const districtList = useMemo(() => {
+    if (!bangkokPopulationGrowth) return [];
+
+    return bangkokPopulationGrowth.map(({ dcode, name }) => ({
+      dcode,
+      name,
+    }));
+  }, [bangkokPopulationGrowth]);
+
+  const handleDistrictSelect = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    const dcode = +event.target.value;
+    const currentDistrictPopulationGrowth = bangkokPopulationGrowth?.find(
+      (item) => item.dcode === dcode
+    );
+
+    setCurrentDistrictPopulationGrowth(currentDistrictPopulationGrowth!);
+  };
 
   return (
     <div className="mt-24px flex sm: flex-col md:flex-row gap-18px justify-between">
@@ -28,9 +49,7 @@ const ChartFilter = () => {
         <select
           defaultValue=""
           className="text-black"
-          onChange={(e) => {
-            setDistrictPopulationGrowth(+e.target.value);
-          }}
+          onChange={handleDistrictSelect}
         >
           <option value="" disabled>
             {locales.SELECT_DISTRICT}

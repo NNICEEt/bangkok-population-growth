@@ -1,5 +1,7 @@
+import { useMemo } from "react";
+import useBangkokPopulationStore from "store/useBangkokPopulationStore";
+
 import * as locales from "./locales";
-import useBangkokPopulationData from "hooks/useBangkokPopulationData";
 
 interface YearsDropdownDropdownProps {
   onSelect: (year: number) => void;
@@ -14,7 +16,19 @@ const YearsDropdown = ({
   minYear = 0,
   maxYear = MAX_YEAR,
 }: YearsDropdownDropdownProps) => {
-  const { yearList } = useBangkokPopulationData();
+  const bangkokPopulationGrowth = useBangkokPopulationStore(
+    (state) => state.bangkokPopulationGrowth
+  );
+
+  const yearList = useMemo(() => {
+    if (!bangkokPopulationGrowth) return [];
+
+    const totalStringYearsInData = bangkokPopulationGrowth.flatMap((item) =>
+      Object.keys(item).filter((key) => !isNaN(Number(key)))
+    );
+
+    return [...new Set(totalStringYearsInData.map((year) => Number(year)))];
+  }, [bangkokPopulationGrowth]);
 
   const yearOptions = yearList.map((year) => ({
     label: `${locales.BE} ${year}`,

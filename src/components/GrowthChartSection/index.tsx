@@ -1,12 +1,12 @@
-import * as locales from "./locales";
 import BarChart from "common/components/BarChart";
 import ChartFilter from "components/ChartFilter";
-import useBangkokPopulationData from "hooks/useBangkokPopulationData";
-import useFetchBangkokPopulation from "hooks/useFetchBangkokPopulation";
+import useShowChartData from "./hooks/useShowChartData";
+
+import * as locales from "./locales";
 
 const GrowthChartSection = () => {
-  useFetchBangkokPopulation();
-  const { districtPopulationGrowth } = useBangkokPopulationData();
+  const { yAxisDataLabels, xDataValueLabels, xDataValues } = useShowChartData();
+  console.table({ yAxisDataLabels, xDataValueLabels, xDataValues });
 
   console.log("growth... component");
 
@@ -16,8 +16,9 @@ const GrowthChartSection = () => {
       <ChartFilter />
       <BarChart
         height={165}
-        labels={districtPopulationGrowth.labels}
-        data={districtPopulationGrowth.data}
+        yAxisDataLabels={yAxisDataLabels}
+        xDataValueLabels={xDataValueLabels}
+        xDataValues={xDataValues}
       />
     </div>
   );

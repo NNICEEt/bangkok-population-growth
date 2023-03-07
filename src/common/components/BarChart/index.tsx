@@ -7,32 +7,35 @@ import {
   MinLabel,
   MaxLabel,
 } from "./styled";
-import { DataProp } from "./types";
 
 interface BarChartProps {
-  labels: string[];
-  data: DataProp;
   height: number;
+  yAxisDataLabels: string[];
+  xDataValues: number[];
+  xDataValueLabels: string[];
 }
 
-const BarChart = ({ labels, data, height }: BarChartProps) => {
-  const { labels: dataLabels, values } = data;
-
-  const maxValue = Math.max(...values);
-  const minValue = Math.min(...values);
+const BarChart = ({
+  height,
+  yAxisDataLabels,
+  xDataValues,
+  xDataValueLabels,
+}: BarChartProps) => {
+  const maxValue = Math.max(...xDataValues);
+  const minValue = Math.min(...xDataValues);
 
   const minValueLabel =
-    dataLabels[values.findIndex((value) => value === minValue)];
+    xDataValueLabels[xDataValues.findIndex((value) => value === minValue)];
   const maxValueLabel =
-    dataLabels[values.findIndex((value) => value === maxValue)];
+    xDataValueLabels[xDataValues.findIndex((value) => value === maxValue)];
 
-  const length = values.length || labels.length;
+  const length = yAxisDataLabels.length;
   const rowHeight = (height - 4 * (length - 1)) / length;
 
   return (
     <BarChartWrapper height={height}>
       <LabelWrapper>
-        {labels.map((item, index) => (
+        {yAxisDataLabels.map((item, index) => (
           <Label key={index} height={rowHeight}>
             <span>{item}</span>
           </Label>
@@ -41,7 +44,7 @@ const BarChart = ({ labels, data, height }: BarChartProps) => {
       <BarWrapper>
         <MinLabel>{minValueLabel}</MinLabel>
         <MaxLabel>{maxValueLabel}</MaxLabel>
-        {values.map((value, index) => {
+        {xDataValues.map((value, index) => {
           const barValue = (value / maxValue) * 100;
 
           return (
@@ -49,7 +52,7 @@ const BarChart = ({ labels, data, height }: BarChartProps) => {
               key={index}
               value={barValue}
               height={rowHeight}
-              label={dataLabels[index]}
+              label={xDataValueLabels[index]}
             />
           );
         })}
