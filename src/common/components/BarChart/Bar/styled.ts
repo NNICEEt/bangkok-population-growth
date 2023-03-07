@@ -5,9 +5,11 @@ import styled from "styled-components";
 interface BarProps {
   width: string;
   height: string;
+  marginLeft: string;
 }
 
 export const BarStyled = styled.div<BarProps>`
+  margin-left: ${({ marginLeft }) => marginLeft};
   width: ${({ width }) => width};
   height: ${({ height }) => height};
   background-color: ${PINK};

@@ -2,13 +2,18 @@ import { BarStyled } from "./styled";
 
 interface BarProps {
   value: number;
+  marginLeft: number;
   height: number;
   label?: string;
 }
 
-const Bar = ({ value, height, label }: BarProps) => {
+const Bar = ({ value, marginLeft, height, label }: BarProps) => {
   return (
-    <BarStyled width={value + "%"} height={height + "px"}>
+    <BarStyled
+      marginLeft={marginLeft + "%"}
+      width={value + "%"}
+      height={height + "px"}
+    >
       {label && <span>{label}</span>}
     </BarStyled>
   );

@@ -21,8 +21,8 @@ const BarChart = ({
   xDataValues,
   xDataValueLabels,
 }: BarChartProps) => {
-  const maxValue = Math.max(...xDataValues);
   const minValue = Math.min(...xDataValues);
+  const maxValue = Math.max(...xDataValues);
 
   const minValueLabel =
     xDataValueLabels[xDataValues.findIndex((value) => value === minValue)];
@@ -45,12 +45,41 @@ const BarChart = ({
         <MinLabel>{minValueLabel}</MinLabel>
         <MaxLabel>{maxValueLabel}</MaxLabel>
         {xDataValues.map((value, index) => {
-          const barValue = (value / maxValue) * 100;
+          let barValue = 0;
+          let marginLeftValue = 0;
+
+          if (Math.sign(minValue) === Math.sign(maxValue)) {
+            let numerator = value;
+            let denominator = maxValue;
+            if (value < 0) {
+              numerator = maxValue;
+              denominator = value;
+            }
+
+            barValue = (Math.abs(numerator) / Math.abs(denominator)) * 100;
+          } else {
+            barValue =
+              (value / maxValue) *
+              (Math.abs(maxValue) / (maxValue - minValue)) *
+              100;
+            marginLeftValue =
+              (Math.abs(minValue) / (maxValue - minValue)) * 100;
+
+            if (value < 0) {
+              barValue =
+                (Math.abs(value) / Math.abs(minValue)) *
+                (Math.abs(minValue) / (maxValue - minValue)) *
+                100;
+              marginLeftValue =
+                (Math.abs(value - minValue) / (maxValue - minValue)) * 100;
+            }
+          }
 
           return (
             <Bar
               key={index}
               value={barValue}
+              marginLeft={marginLeftValue}
               height={rowHeight}
               label={xDataValueLabels[index]}
             />
