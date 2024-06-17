@@ -1,5 +1,4 @@
 # Bangkok-Population-Growth
 
-- ReactTS + Vite 
-- WindiCSS ใช้ทำ Design System ภายในโปรเจ็ค
+- ReactTS + Vite + WindiCSS
 - ทำเป็น Responsive web
