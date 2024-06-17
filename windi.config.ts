@@ -9,6 +9,7 @@ export default {
         black: "#000000",
       },
       fontSize: {
+        8: ["8px", "10px"],
         14: ["14px", "17.5px"],
         16: ["16px", "20px"],
         18: ["18px", "22.5px"],
@@ -17,9 +18,6 @@ export default {
       },
       container: {
         center: true,
-      },
-      textColor: {
-        primary: "white",
       },
     },
   },

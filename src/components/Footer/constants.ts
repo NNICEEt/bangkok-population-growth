@@ -1,19 +1,6 @@
-export const TITLE = "แหล่งข้อมูล";
+export const statMonthUrl =
+  "https://stat.bora.dopa.go.th/stat/statnew/statMONTH/statmonth/";
 
-export const LINKS = [
-  {
-    label:
-      "สำนักบริหารการทะเบียน กรมการปกครอง กระทรวงมหาดไทย, จำนวนประชากร, สำนักบริหารการทะเบียน กรมการปกครอง กระทรวงมหาดไทย, Editor. 2564: กรุงเทพฯ.",
-    url: "https://stat.bora.dopa.go.th/stat/statnew/statMONTH/statmonth/",
-  },
-  {
-    label:
-      "สำนักงานสถิติแห่งชาติ, การสำรวจภาวะเศรษฐกิจและสังคมของครัวเรือน พ.ศ. 2563 สำนักงานสถิติแห่งชาติ, Editor. 2563: กรุงเทพฯ.",
-    url: "http://www.nso.go.th/",
-  },
-  {
-    label:
-      "สำนักดัชนีเศรษฐกิจการค้า กระทรวงพาณิชย์, ข้อมูลดัชนีราคาผู้บริโภคทั่วไป, สำนักดัชนีเศรษฐกิจการค้า กระทรวงพาณิชย์, Editor. 2563: กรุงเทพฯ.",
-    url: "http://www.price.moc.go.th/",
-  },
-];
+export const nsoUrl = "http://www.nso.go.th/";
+
+export const priceUrl = "http://www.price.moc.go.th/";

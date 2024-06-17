@@ -1,6 +1,6 @@
-export const TITLE = "การเติบโต";
-
 export const DISTRICT = "เขต";
+
+export const SELECT_DISTRICT = "เลือกเขต";
 
 export const SINCE = "ตั้งแต่";
 
